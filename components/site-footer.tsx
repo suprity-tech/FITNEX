@@ -38,8 +38,7 @@ export function SiteFooter() {
           <div className="max-w-xs">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              FITNEX helps you discover workouts, join challenges, and track
-              your progress — one healthy day at a time.
+              FITNEX turns steps between lectures into streaks, badges and a campus leaderboard. Built for student life.
             </p>
           </div>
           {COLUMNS.map((col) => (
@@ -64,11 +63,10 @@ export function SiteFooter() {
         </div>
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} FITNEX. A hackathon demo — mock data,
-            no real accounts.
+            © {new Date().getFullYear()} FITNEX. Campus wellness reimagined.
           </p>
           <p className="text-xs text-muted-foreground">
-            Not medical advice. For general wellness only.
+            Privacy • Terms • Contact
           </p>
         </div>
       </div>
