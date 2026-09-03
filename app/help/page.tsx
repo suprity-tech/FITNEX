@@ -1,213 +1,58 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import {
-  ArrowLeft,
-  ChevronDown,
-  Dumbbell,
-  Home,
-  LineChart,
-  Mail,
-  Rocket,
-} from 'lucide-react'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
-import { Alert } from '@/components/ui/alert'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { HelpCircle, MessageCircle } from 'lucide-react'
 
 const FAQS = [
-  {
-    q: 'Is FITNEX free to use?',
-    a: 'Yes. FITNEX is a hackathon demo, so everything is completely free. There are no payments, subscriptions, or real accounts involved.',
-  },
-  {
-    q: 'Is this real authentication?',
-    a: 'No. Login and signup use mock authentication stored in your browser with localStorage. Any valid-looking email and a 6+ character password will work.',
-  },
-  {
-    q: 'Where is my data stored?',
-    a: 'All your data — profile, completed workouts, joined challenges, and settings — lives only in this browser via localStorage. Clearing your browser data will reset it.',
-  },
-  {
-    q: 'Does FITNEX give medical advice?',
-    a: 'No. FITNEX is for general wellness and motivation only. It does not provide medical diagnosis or treatment, and it makes no health guarantees. Consult a professional before starting any new program.',
-  },
-  {
-    q: 'How is my streak calculated?',
-    a: 'Your streak counts the number of consecutive days you have completed at least one workout, ending today (or yesterday if you have not worked out yet today).',
-  },
+  { q: 'How does FITNEX track my steps?', a: 'FITNEX uses your phone\'s built-in step counter. Just keep your phone in your pocket, and we track everything automatically.' },
+  { q: 'Can I lose my streak if I miss a day?', a: 'Yes, but you can freeze your streak during exams or busy periods. Update your daily goal in settings.' },
+  { q: 'What can I do with my points?', a: 'Earn points by completing challenges. Trade them for gym perks, canteen discounts, and exclusive merchandise on campus.' },
+  { q: 'How do I join a challenge?', a: 'Go to Challenges, browse active ones for your campus, and click "Join Challenge". You\'ll compete with your batch all week.' },
+  { q: 'Is my data private?', a: 'Absolutely. Your step data is private. Only your ranking appears on the leaderboard.' },
+  { q: 'Can I change my daily step goal?', a: 'Yes! Go to Settings and adjust your goal anytime. Your streak continues even if you lower it.' },
 ]
-
-const GUIDES = [
-  {
-    icon: Rocket,
-    title: 'Getting started',
-    body: 'Tap "Get started" to create a demo profile and complete a short onboarding. Then head to your dashboard to see your personalized recommendation.',
-    href: '/onboarding',
-    cta: 'Start onboarding',
-  },
-  {
-    icon: Dumbbell,
-    title: 'Finding workouts',
-    body: 'Browse the workout library and filter by category or difficulty. Open any workout, tap "Start workout", then "Complete workout" when you finish.',
-    href: '/workouts',
-    cta: 'Browse workouts',
-  },
-  {
-    icon: LineChart,
-    title: 'Understanding progress',
-    body: 'Completing workouts updates your completed count, active minutes, streak, and weekly activity chart on the progress page.',
-    href: '/progress',
-    cta: 'View progress',
-  },
-]
-
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div className="rounded-2xl border border-border bg-card">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 rounded-2xl"
-      >
-        <span className="font-medium">{q}</span>
-        <ChevronDown
-          className={cn(
-            'size-5 shrink-0 text-muted-foreground transition-transform',
-            open && 'rotate-180',
-          )}
-        />
-      </button>
-      {open && (
-        <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">
-          {a}
-        </p>
-      )}
-    </div>
-  )
-}
 
 export default function HelpPage() {
-  const router = useRouter()
-  const [contacted, setContacted] = useState(false)
-
   return (
     <div className="flex min-h-svh flex-col">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-10 sm:px-6">
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="inline-flex items-center gap-1.5 rounded-lg py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
-          >
-            <ArrowLeft className="size-4" />
-            Back
-          </button>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 rounded-lg py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
-          >
-            <Home className="size-4" />
-            Home
-          </Link>
-        </div>
+      <main className="flex-1">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+          <div className="mb-12 text-center">
+            <HelpCircle className="size-12 mx-auto text-primary mb-4" />
+            <h1 className="font-display text-4xl font-bold">Help & Support</h1>
+            <p className="mt-2 text-muted-foreground">Find answers to common questions</p>
+          </div>
 
-        <h1 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          Help &amp; FAQ
-        </h1>
-        <p className="mt-3 max-w-2xl text-muted-foreground text-pretty">
-          Everything you need to know about using FITNEX. Still stuck? Reach out
-          and we&apos;ll point you in the right direction.
-        </p>
-
-        {/* Guides */}
-        <section className="mt-8 grid gap-5 md:grid-cols-3">
-          {GUIDES.map((g) => (
-            <Card key={g.title} className="flex flex-col rounded-2xl">
-              <CardContent className="flex flex-1 flex-col p-6">
-                <span className="grid size-11 place-items-center rounded-2xl bg-primary/12 text-primary">
-                  <g.icon className="size-5" />
-                </span>
-                <h2 className="mt-4 font-display text-lg font-semibold">
-                  {g.title}
-                </h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {g.body}
-                </p>
-                <Link
-                  href={g.href}
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'mt-4 h-10 rounded-xl',
-                  )}
-                >
-                  {g.cta}
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
-        </section>
-
-        {/* FAQ */}
-        <section className="mt-10">
-          <h2 className="font-display text-2xl font-bold tracking-tight">
-            Frequently asked questions
-          </h2>
-          <div className="mt-5 flex flex-col gap-3">
-            {FAQS.map((f) => (
-              <FaqItem key={f.q} q={f.q} a={f.a} />
+          <div className="space-y-4 mb-12">
+            {FAQS.map((faq, i) => (
+              <Card key={i} className="rounded-2xl border-border bg-card">
+                <CardHeader>
+                  <CardTitle className="font-display text-lg">{faq.q}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{faq.a}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
-        </section>
 
-        {/* Contact */}
-        <section className="mt-10">
-          <Card className="rounded-3xl bg-card">
-            <CardContent className="flex flex-col items-start gap-4 p-8 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h2 className="font-display text-xl font-bold">
-                  Still need help?
-                </h2>
-                <p className="mt-1 text-muted-foreground">
-                  Contact our (demo) support team and we&apos;ll get back to
-                  you.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 sm:flex-row">
-                <a
-                  href="mailto:support@fitnex.demo?subject=FITNEX%20Support"
-                  className={cn(
-                    buttonVariants({ variant: 'outline' }),
-                    'h-11 rounded-xl px-5',
-                  )}
-                >
-                  <Mail className="size-4" />
-                  Email support
-                </a>
-                <Button
-                  onClick={() => setContacted(true)}
-                  className="h-11 rounded-xl px-5"
-                >
-                  Contact support
-                </Button>
-              </div>
+          <Card className="rounded-2xl border-border bg-primary/10 border-primary/20">
+            <CardHeader>
+              <CardTitle className="font-display flex items-center gap-2 text-primary">
+                <MessageCircle className="size-5" />
+                Still need help?
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-muted-foreground">Can't find your answer? Reach out to our support team and we'll help you out.</p>
+              <Button className="rounded-lg">Contact Support</Button>
             </CardContent>
           </Card>
-          {contacted && (
-            <Alert tone="success" role="status" className="mt-4">
-              Thanks for reaching out! This is a demo, so no message was
-              actually sent — but a real FITNEX team would reply within 24
-              hours.
-            </Alert>
-          )}
-        </section>
+        </div>
       </main>
       <SiteFooter />
     </div>
