@@ -36,7 +36,7 @@ const LEVELS: { value: ActivityLevel; hint: string }[] = [
 
 export default function OnboardingPage() {
   const router = useRouter()
-  const { hydrated, profile, saveProfile } = useFitnex()
+  const { hydrated, profile, session, login, saveProfile } = useFitnex()
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
   const [goal, setGoal] = useState<FitnessGoal | ''>('')
@@ -71,12 +71,19 @@ export default function OnboardingPage() {
     if (!validate()) return
     setLoading(true)
     setTimeout(() => {
+      const trimmedName = name.trim()
       saveProfile({
-        name: name.trim(),
+        name: trimmedName,
         age: Number(age),
         goal: goal as FitnessGoal,
         activityLevel: level as ActivityLevel,
       })
+      // Users can reach onboarding directly via "Get started" without signing
+      // up first. Ensure a demo session exists so /dashboard is accessible.
+      if (!session) {
+        const slug = trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, '') || 'athlete'
+        login(`${slug}@fitnex.demo`)
+      }
       router.push('/dashboard')
     }, 700)
   }
