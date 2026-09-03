@@ -22,149 +22,142 @@ import { cn } from '@/lib/utils'
 
 const FEATURES = [
   {
-    icon: Dumbbell,
-    title: 'Guided workouts',
-    body: 'A library of strength, cardio, HIIT, yoga, core, and mobility sessions with clear, step-by-step instructions.',
+    icon: Activity,
+    title: 'Steps count themselves',
+    body: 'Phone in your pocket is enough. Calories and active minutes come along with it.',
   },
   {
     icon: Target,
-    title: 'Goal-based plans',
-    body: 'Set your goal — lose weight, build strength, boost endurance, or stay active — and get matched sessions.',
+    title: 'Goals that fit your timetable',
+    body: 'Start at 6,000. Raise it on light weeks, drop it during exams — without losing your streak.',
   },
   {
     icon: Trophy,
-    title: 'Fun challenges',
-    body: 'Join community challenges to stay motivated and build habits that actually stick.',
-  },
-  {
-    icon: LineChart,
-    title: 'Progress tracking',
-    body: 'Watch your completed workouts, active minutes, and streak grow with simple, clear visuals.',
+    title: 'Badges and a campus board',
+    body: 'Weekly challenges with your batch. Points you can trade for canteen and gym perks.',
   },
 ]
 
 const STEPS = [
   {
     icon: UserPlus,
-    title: 'Create your profile',
-    body: 'Tell us your goal and activity level in a quick onboarding. No commitment, no card needed.',
+    title: 'Sign up in a minute',
+    body: 'Name, email, password. That is the whole form.',
   },
   {
     icon: Play,
-    title: 'Pick a workout',
-    body: 'Browse and filter sessions, then follow along with clear exercises and instructions.',
+    title: 'Tell us how you move',
+    body: 'Fitness level, what you like doing, how long you have. Or skip it — you can set it later.',
   },
   {
     icon: CalendarCheck,
-    title: 'Track your progress',
-    body: 'Complete workouts to build your streak and watch your weekly activity climb.',
+    title: 'Walk. Watch the ring close.',
+    body: 'Everything after that is streaks, badges and bragging rights.',
   },
 ]
 
 export default function HomePage() {
-  const previewWorkouts = WORKOUTS.slice(0, 3)
-  const previewChallenge = CHALLENGES[0]
-
   return (
     <div className="flex min-h-svh flex-col">
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden border-b border-border">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_80%_0%,var(--color-primary)/12%,transparent)]" />
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:py-32">
             <div>
-              <Badge variant="success" className="mb-5">
-                <Flame className="size-3.5" /> New season, stronger you
+              <Badge variant="outline" className="mb-5">
+                <span className="inline-block h-2 w-2 rounded-full bg-primary mr-2"></span>
+                Built for student life
               </Badge>
-              <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-                Move better,{' '}
-                <span className="text-primary">every single day.</span>
+              <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl">
+                The walk to class<br />
+                already counts.<br />
+                <span className="text-primary">Start counting.</span>
               </h1>
-              <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
-                FITNEX is your all-in-one fitness companion — discover workouts,
-                join challenges, and track real progress. Built for momentum,
-                designed for everyone.
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
+                FITNEX turns steps between lectures into streaks, badges and a campus leaderboard. No gym membership required.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/onboarding"
                   className={cn(
                     buttonVariants({ variant: 'default' }),
-                    'h-12 rounded-xl px-7 text-base',
+                    'h-12 rounded-lg px-7 text-base',
                   )}
                 >
-                  Get started
+                  Get started — it's free
                   <ArrowRight className="size-5" />
                 </Link>
                 <Link
-                  href="/workouts"
+                  href="/login"
                   className={cn(
                     buttonVariants({ variant: 'outline' }),
-                    'h-12 rounded-xl px-7 text-base',
+                    'h-12 rounded-lg px-7 text-base',
                   )}
                 >
-                  Explore workouts
+                  I already have an account
                 </Link>
               </div>
-              <dl className="mt-10 grid max-w-md grid-cols-3 gap-4">
-                {[
-                  { k: '6+', v: 'Workout types' },
-                  { k: '4', v: 'Live challenges' },
-                  { k: '100%', v: 'Free demo' },
-                ].map((s) => (
-                  <div key={s.v}>
-                    <dt className="font-display text-2xl font-bold text-primary">
-                      {s.k}
-                    </dt>
-                    <dd className="text-xs text-muted-foreground">{s.v}</dd>
-                  </div>
-                ))}
-              </dl>
+              <div className="mt-8 flex items-center gap-4">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className="h-8 w-8 rounded-full border-2 border-background bg-muted"
+                    />
+                  ))}
+                </div>
+                <span className="text-sm text-muted-foreground">
+                  Join the students already tracking at your campus
+                </span>
+              </div>
             </div>
             <div className="relative">
-              <div className="overflow-hidden rounded-3xl border border-border shadow-lg">
-                <img
-                  src="/hero.png"
-                  alt="Athletes training together at FITNEX"
-                  className="aspect-[4/5] w-full object-cover"
-                />
-              </div>
-              <Card className="absolute -bottom-5 -left-4 w-44 rounded-2xl sm:-left-6">
-                <CardContent className="flex items-center gap-3 p-4">
-                  <span className="grid size-10 place-items-center rounded-xl bg-success/15 text-success">
-                    <Activity className="size-5" />
-                  </span>
-                  <div>
-                    <p className="font-display text-lg font-bold leading-none">
-                      248 min
-                    </p>
-                    <p className="text-xs text-muted-foreground">this week</p>
+              <div className="overflow-hidden rounded-2xl border border-border bg-card p-6">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-24 w-24 flex-shrink-0">
+                    <svg width="100" height="100" viewBox="0 0 106 106" className="absolute inset-0">
+                      <circle cx="53" cy="53" r="45" fill="none" stroke="currentColor" strokeWidth="10" className="text-border" />
+                      <circle cx="53" cy="53" r="45" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeDasharray="283" strokeDashoffset="56" transform="rotate(-90 53 53)" className="text-primary" />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="font-display text-xl font-bold">4,820</span>
+                      <span className="text-xs text-muted-foreground">steps</span>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="flex flex-col gap-3">
+                    <div>
+                      <div className="font-display text-lg font-bold text-primary">12 days</div>
+                      <div className="text-sm text-muted-foreground">active in a row</div>
+                    </div>
+                    <div className="h-px bg-border" />
+                    <div>
+                      <div className="font-display text-lg font-bold">#7</div>
+                      <div className="text-sm text-muted-foreground">on your campus board</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Features */}
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-              Everything you need to build a healthy routine
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl">
+              What you get
             </h2>
-            <p className="mt-4 text-muted-foreground text-pretty">
-              Simple tools that keep you consistent — without the overwhelm.
-            </p>
           </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((f) => (
-              <Card key={f.title} className="rounded-2xl">
+              <Card key={f.title} className="rounded-2xl border-border bg-card">
                 <CardContent className="p-6">
-                  <span className="grid size-12 place-items-center rounded-2xl bg-primary/12 text-primary">
+                  <span className="grid size-12 place-items-center rounded-2xl bg-primary/15 text-primary">
                     <f.icon className="size-6" />
                   </span>
-                  <h3 className="mt-5 font-display text-lg font-semibold">
+                  <h3 className="mt-5 font-display text-lg font-bold">
                     {f.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -178,157 +171,51 @@ export default function HomePage() {
 
         {/* How it works */}
         <section className="border-y border-border bg-card">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <Badge className="mb-4">How it works</Badge>
-              <h2 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-                Get moving in three simple steps
-              </h2>
-            </div>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+            <h2 className="font-display text-4xl font-bold tracking-tight text-balance text-center mb-16">
+              How it works
+            </h2>
+            <div className="grid gap-8 md:grid-cols-3">
               {STEPS.map((step, i) => (
                 <div key={step.title} className="relative">
-                  <div className="flex items-center gap-3">
-                    <span className="grid size-11 place-items-center rounded-2xl bg-primary text-primary-foreground font-display text-lg font-bold">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground font-display font-bold text-sm">
                       {i + 1}
                     </span>
-                    <step.icon className="size-6 text-primary" />
                   </div>
-                  <h3 className="mt-5 font-display text-xl font-semibold">
+                  <h3 className="font-display text-lg font-bold">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-muted-foreground">{step.body}</p>
+                  <p className="mt-2 text-muted-foreground text-sm">{step.body}</p>
+                  {i < STEPS.length - 1 && (
+                    <div className="absolute top-5 -right-4 hidden md:block text-2xl text-primary/30">→</div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Workout preview */}
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-                Featured workouts
-              </h2>
-              <p className="mt-3 text-muted-foreground">
-                A taste of what is waiting inside your FITNEX library.
-              </p>
-            </div>
-            <Link
-              href="/workouts"
-              className={cn(
-                buttonVariants({ variant: 'outline' }),
-                'h-11 rounded-xl px-5',
-              )}
-            >
-              View all workouts
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {previewWorkouts.map((w) => (
-              <WorkoutCard key={w.id} workout={w} />
-            ))}
-          </div>
-        </section>
-
-        {/* Challenge + progress preview */}
-        <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-16 sm:px-6 lg:grid-cols-2">
-          <Card className="overflow-hidden rounded-3xl bg-primary text-primary-foreground">
-            <CardContent className="p-8">
-              <Badge className="border-transparent bg-primary-foreground/15 text-primary-foreground">
-                <Trophy className="size-3.5" /> Challenge
-              </Badge>
-              <h3 className="mt-4 font-display text-2xl font-bold">
-                {previewChallenge.title}
-              </h3>
-              <p className="mt-2 max-w-sm text-primary-foreground/85">
-                {previewChallenge.description}
-              </p>
-              <div className="mt-6 flex items-center gap-6 text-sm">
-                <span>{previewChallenge.duration}</span>
-                <span>
-                  {previewChallenge.participants.toLocaleString()} joined
-                </span>
-              </div>
-              <Link
-                href="/challenges"
-                className={cn(
-                  buttonVariants({ variant: 'default' }),
-                  'mt-7 h-11 rounded-xl bg-primary-foreground px-5 text-primary hover:bg-primary-foreground/90',
-                )}
-              >
-                Browse challenges
-                <ArrowRight className="size-4" />
-              </Link>
-            </CardContent>
-          </Card>
-
-          <Card className="rounded-3xl">
-            <CardContent className="p-8">
-              <Badge variant="success">
-                <LineChart className="size-3.5" /> Progress
-              </Badge>
-              <h3 className="mt-4 font-display text-2xl font-bold">
-                See your momentum build
-              </h3>
-              <p className="mt-2 text-muted-foreground">
-                Every completed workout updates your streak, active minutes, and
-                weekly activity.
-              </p>
-              <div className="mt-6 flex items-end gap-2" aria-hidden="true">
-                {[40, 65, 30, 80, 55, 90, 70].map((h, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 rounded-t-md bg-primary/70"
-                    style={{ height: `${h}px` }}
-                  />
-                ))}
-              </div>
-              <Link
-                href="/progress"
-                className={cn(
-                  buttonVariants({ variant: 'outline' }),
-                  'mt-7 h-11 rounded-xl px-5',
-                )}
-              >
-                View progress
-                <ArrowRight className="size-4" />
-              </Link>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Final CTA */}
-        <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-          <div className="rounded-3xl border border-border bg-card px-6 py-14 text-center shadow-sm">
-            <h2 className="mx-auto max-w-2xl font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-              Ready to start your fitness journey?
+        {/* CTA */}
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="rounded-2xl border border-border bg-card px-8 py-16 text-center">
+            <h2 className="mx-auto max-w-2xl font-display text-4xl font-bold tracking-tight text-balance">
+              Your first streak<br />
+              starts tomorrow.
             </h2>
             <p className="mx-auto mt-4 max-w-md text-muted-foreground text-pretty">
-              Create your free demo profile and complete your first workout in
-              minutes.
+              Create your free profile and track your first steps in minutes. No credit card needed.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
                 href="/onboarding"
                 className={cn(
                   buttonVariants({ variant: 'default' }),
-                  'h-12 rounded-xl px-7 text-base',
+                  'h-12 rounded-lg px-7 text-base',
                 )}
               >
                 Get started
                 <ArrowRight className="size-5" />
-              </Link>
-              <Link
-                href="/login"
-                className={cn(
-                  buttonVariants({ variant: 'ghost' }),
-                  'h-12 rounded-xl px-7 text-base',
-                )}
-              >
-                I already have an account
               </Link>
             </div>
           </div>
