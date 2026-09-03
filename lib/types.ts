@@ -1,53 +1,5 @@
-export type Difficulty = 'Beginner' | 'Intermediate' | 'Advanced'
-
-export type WorkoutCategory =
-  | 'Strength'
-  | 'Cardio'
-  | 'HIIT'
-  | 'Yoga'
-  | 'Mobility'
-  | 'Core'
-
-export interface Exercise {
-  name: string
-  detail: string
-}
-
-export interface Workout {
-  id: string
-  title: string
-  category: WorkoutCategory
-  difficulty: Difficulty
-  /** minutes */
-  duration: number
-  description: string
-  /** estimated kcal */
-  calories: number
-  focus: string
-  exercises: Exercise[]
-  instructions: string[]
-  image: string
-}
-
-export interface Challenge {
-  id: string
-  title: string
-  description: string
-  /** e.g. "14 days" */
-  duration: string
-  goal: string
-  /** 0-100 percent used for the demo progress bar */
-  progress: number
-  participants: number
-}
-
-export type FitnessGoal =
-  | 'Lose weight'
-  | 'Build strength'
-  | 'Improve endurance'
-  | 'Stay active'
-
-export type ActivityLevel = 'Beginner' | 'Intermediate' | 'Advanced'
+export type FitnessLevel = 'Beginner' | 'Regular' | 'Advanced'
+export type Gender = 'Male' | 'Female' | 'Other'
 
 export interface Session {
   email: string
@@ -56,25 +8,53 @@ export interface Session {
 
 export interface Profile {
   name: string
+  email: string
   age: number | ''
-  goal: FitnessGoal | ''
-  activityLevel: ActivityLevel | ''
+  gender: Gender | ''
+  level: FitnessLevel | ''
+  activities: string[]
+  minutesPerDay: number
+  heightCm: number
+  weightKg: number
+  units: 'metric' | 'imperial'
 }
 
-export interface CompletedWorkout {
+export interface DayStat {
+  label: string
+  steps: number
+  hitGoal: boolean
+  isToday: boolean
+}
+
+export interface Badge {
   id: string
-  title: string
-  category: WorkoutCategory
-  duration: number
-  calories: number
-  completedAt: number
+  name: string
+  icon: string
+  tint: 'lime' | 'flame'
+  earned: boolean
 }
 
-export type ThemePref = 'light' | 'dark' | 'system'
-export type UnitsPref = 'metric' | 'imperial'
+export interface Reward {
+  id: string
+  name: string
+  icon: string
+  cost: number
+}
 
-export interface Settings {
-  notifications: boolean
-  theme: ThemePref
-  units: UnitsPref
+export interface Challenge {
+  id: string
+  name: string
+  description: string
+  icon: string
+  tint: 'lime' | 'flame'
+  joined: number
+  points: number
+}
+
+export interface LeaderRow {
+  id: string
+  name: string
+  initials: string
+  steps: number
+  isYou?: boolean
 }
