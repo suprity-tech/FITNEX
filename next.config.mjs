@@ -9,7 +9,7 @@ const nextConfig = {
   experimental: {
     dynamicIO: true,
   },
-  staticPageGenerationTimeout: 60,
-}
+  staticPageGenerationTimeout: 120, // increased from 60 to 120 seconds
+};
 
-export default nextConfig
+export default nextConfig;
