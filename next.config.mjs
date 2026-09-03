@@ -7,7 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    dynamicIO: true,
+    cacheComponents: true, // replaces dynamicIO
   },
   staticPageGenerationTimeout: 120, // increased from 60 to 120 seconds
 };
